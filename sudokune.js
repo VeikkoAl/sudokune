@@ -16,6 +16,10 @@ function sudokune(board) {
         // Build a set of all values in board
         let set = new Set()
         for (let i=0; i<9; i++) {
+            if (board[i].length !== 9) {
+                console.log ("Row " + i + " does not contain correct amount of values")
+                return
+            }
             set = new Set([...set, ...new Set(board[i])])
         }
         //compare is above set contains values not in valids.
@@ -23,6 +27,9 @@ function sudokune(board) {
             console.log("Input contains invalid values and/or characters.")
             return
         } 
+    } else {
+        console.log("Board does not contain correct number of rows.")
+        return
     }
 /*    
 
@@ -33,7 +40,7 @@ function sudokune(board) {
       console.log(containsOnly([1, 2], [2,1,2,1,1]));
 */
     // loop for rows. This is easy, just use the array in array position i for check.
-    console.log('--------------------loop for rows')
+//    console.log('--------------------loop for rows')
     for (let i=0; i<9; i++) {
         if (checkArray(board[i]) === false) {
             console.log("failed on row " + i)
@@ -41,7 +48,7 @@ function sudokune(board) {
         }
     }
     //loop for columns. Build a check array by looping through the columns i and appending correct row j for the check.
-    console.log("--------------------loop for cols")
+//    console.log("--------------------loop for cols")
     for (let i=0; i<9; i++) {
         //build column array'
         let colArray = []
@@ -54,7 +61,7 @@ function sudokune(board) {
         }
     }
     //loop for squares. Build correct arrays by limiting arrays with x<3 (1st row/col) and x>5 (3rd row/col)
-    console.log("--------------------loop for sqrs")
+//    console.log("--------------------loop for sqrs")
     let squareArrays = [[],[],[],[],[],[],[],[],[]]
     for (let i=0; i<9; i++) {
         for (let j=0; j<9; j++) {
