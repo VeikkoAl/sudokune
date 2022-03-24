@@ -10,6 +10,28 @@ console.log(sudokune([["5","3",".",".","7",".",".",".","."],
 
 function sudokune(board) {
 
+    //check board is valid Array
+    if (board.length === 9) {
+        let valids = ["1","2","3","4","5","6","7","8","9","."]
+        // Build a set of all values in board
+        let set = new Set()
+        for (let i=0; i<9; i++) {
+            set = new Set([...set, ...new Set(board[i])])
+        }
+        //compare is above set contains values not in valids.
+        if (Array.from(set).every(elem => valids.includes(elem)) === false) {
+            console.log("Input contains invalid values and/or characters.")
+            return
+        } 
+    }
+/*    
+
+    function containsOnly(array1, array2){
+        return array2.every(elem => array1.includes(elem))
+      }
+      console.log(containsOnly([1, 2, 3], [2,1,2,3,5]));
+      console.log(containsOnly([1, 2], [2,1,2,1,1]));
+*/
     // loop for rows. This is easy, just use the array in array position i for check.
     console.log('--------------------loop for rows')
     for (let i=0; i<9; i++) {
